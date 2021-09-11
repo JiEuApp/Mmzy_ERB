@@ -1,225 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>弥漫之夜</title>
-    <meta name="description" content="//温柔多情的夜，甜蜜温馨的梦//">
-    <meta name="keywords" content="App应用安全下载，IOS/Android 应用发布分发管理">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta content="email=no" name="format-detection" />
-    <meta content="telephone=no" name="format-detection" />
-    <link rel="icon" href="data/qx/icon.png" sizes="128x128" title="NOah">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="css/layui.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="data/jquery.js"></script>
-    <script src="data/qrcode.js"></script>
-<!-- <script> 防止扒站跳转-->
-<!-- var a = 'retrtrfdcfvvvv'; -->
-<!-- var ym = window.location; -->
-<!-- var ym2 = 'http://www.baidu.com'; -->
-<!-- var ym3 = String(ym); -->
- 
-<!-- function suan(a){ -->
-<!-- var re = a.substring(0,2); -->
-<!-- var tr = a.substring(2,4); -->
-<!-- var tr2 = a.substring(4,6); -->
-<!-- var fd = a.substring(6,8); -->
-<!-- var cf = a.substring(8,10); -->
-<!-- var vv = a.substring(10,12); -->
-<!-- var vv2 = a.substring(12,14); -->
-<!-- re = 'h'; -->
-<!-- tr = 't'; -->
-<!-- tr2 ='t'; -->
-<!-- fd = 'p'; -->
-<!-- cf = ':'; -->
-<!-- vv = '/'; -->
-<!-- vv2 = '/'; -->
-<!-- var p = re+tr+tr2+fd+cf+vv+vv2; -->
-<!-- return p; -->
-<!-- } -->
-<!-- if (ym3.indexOf(ym2) == -1 ) { -->
-<!-- alert(ym2); -->
-<!-- // var av = ym3; -->
-<!-- var b = suan(a) + 'https://www.baidu.com' + '/'; -->
-<!-- window.location = b; -->
-<!-- } -->
-<!-- </script> -->
-</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <title>实用的视频直播类app首页模板</title>
 
-<body>
-    <div class="distribute-wrap" id="distribute-cont">
-        <div class="distribute-header"></div>
-        <div class="distribute-content">
-            <div class="container">
-                <div class="cont">				
-                    <div class="icon-wrap">
-			<img id="icon-src" src="#">
-		    </div>
-			<div class="info"></div>
-			<div style="text-align:center;padding:15px;">
-		          <div class="guide"></div>
-			<div id="modal" class="showtext" style="height:50px;font-size:14px;color:#e7534d;display:none"></div>
-			</div>
-                    <div class="download">
-                        <a href="javascript:;" id="download_btn" class="download-btn layui-btn layui-btn-lg layui-btn-normal" style="display:block;width:270px;margin-top:30px;">
-			 <i class="fa fa-download"></i> &nbsp;<span style="line-height: 48px;">点击下载</span></a>
-			<a href="javascript:;" id="xinren_btn" onclick="openMobileConfig()" class="btn layui-btn layui-btn-lg layui-btn-normal" style="display:none;border-radius: 25px;height: 48px;line-height: 48px;width:270px;margin-top:-20px;"><i class="fa fa-check-square-o"></i> 信任 "企业级开发者"</a>
-			<br>
-			<br>
-                    </div>
-                    <span class="system"></span>
-			<div id="desc"></div>
-                    <div class="download-code" style="margin-top:12px;padding:6px;border:1px solid #ccc;width:146px;height:146px;"></div>
-		    <br>
-                    <div class="text-center tip">扫描二维码下载</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <link href="https://www.17sucai.com/static/css/demo.css" rel="stylesheet" media="all" />
 
-    <div class="shdow" id="mask">
-        <img id="mask-tip">
-    </div>
+    <!--[if IE]>
 
-<script>
-  var browser = {
-      versions: function () {
-	  var u = navigator.userAgent,
-	      app = navigator.appVersion;
-	      
-      return {                                                                //移动终端浏览器版本信息
-	      trident: u.indexOf('Trident') > -1,                             //IE内核
-	      presto: u.indexOf('Presto') > -1,                               //opera内核
-	      webKit: u.indexOf('AppleWebKit') > -1,                          //苹果、谷歌内核
-	      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,     //火狐内核
-	      mobile: !!u.match(/AppleWebKit.*Mobile.*/),                     //是否为移动终端
-	      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),                //ios终端
-	      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,  //android终端或uc浏览器
-	      iPhone: u.indexOf('iPhone') > -1,                               //是否为iPhone或者QQHD浏览器
-	      iPad: u.indexOf('iPad') > -1,                                   //是否iPad
-	      webApp: u.indexOf('Safari') == -1                               //是否web应该程序，没有头部与底部
-      };
-      }(),
-	  language: (navigator.browserLanguage || navigator.language).toLowerCase()
-  };
-
-        //数据修改区 1-iOS / 2-Android
-	var dir = 'qx';    //文件夹名字
-        var system = {
-            '1': {
-                'name': '弥漫之夜',
-                'version' : '1.0.80（Build 81）',
-                'size': '11.72M',
-                'time': '2021-09-01 03:10:18',
-		'desc': '',//APP程序描述
-		'showtext': '点击"安装"后，继续按"Home键"在桌面查看安装进度',
-		'guide': '<a href="guide.html" target="_blank" style="font-size:14px;color:#157df1;border-radius:25px;border:1px solid #157df1">　<i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;"未受信任的企业级开发者"的解决办法　</a>',
-            },
-            '2': {
-                'name': '弥漫之夜',
-                'version' : '1.0.80（Build 81）',
-                'size': '12.77M',
-                'time': '2021-09-01 03:11:26',
-		'desc': '',//APP程序描述
-		'guide': '',
-            },
+    <style type="text/css">
+        li.remove_frame a {
+            padding-top: 5px;
+            background-position: 0px -3px;
         }
-	
-	//数据修改区
-        var platform = 2;
-        var info_html = '';
-        $(function () {
-	$('#icon-src').attr("src", "data/"+dir+"/icon.png");
-            if (browser.versions.mobile && browser.versions.ios) {
-                platform = 1;
-            }
-	    info_html+='<h2 class="name">'+system[platform].name+'</h2>'
-	    info_html+='<p class="name-info pc-pwd"><span>版本：</span>'+system[platform].version+'　/　<span>大小：</span>'+system[platform].size+'<br><span>更新时间：</span> '+system[platform].time+'</p>'
-	$('.info').html(info_html);
-		
-	var guide_html = '';
-	    guide_html+= system[platform].guide
-	$('.guide').html(guide_html);
-	
-	var showtext_html = '';
-	    showtext_html+='<div style="text-align:center;padding:15px;" style="color: #1abc9c">'+system[platform].showtext+'</div>'
-        $('.showtext').html(showtext_html);
+    </style>
 
-        $('.system').text(platform==1?'适用于苹果手机':'适用于安卓手机');
-	    if (system[platform].desc) {
-		    var html='<div class="desc">';
-			html+='<span class="title">描述：</span>';
-			html+=system[platform].desc;
-			html+='</div>';
-		$('#desc').html(html);
+    <![endif]-->
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.qrcode.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function fixHeight() {
+                var headerHeight = $("#switcher").height();
+                $("#iframe").attr("height", $(window).height()-54+ "px");
             }
-		
-            //生成二维码
-            jQuery('.download-code').qrcode({
-                render: "canvas",                //也可以替换为table
-                width: 145,                      //二维码宽度
-                height: 145,                     //二维码高度
-                text: location.href,
-                background: "#ffffff",           //二维码的后景色
-                foreground: "#000000",           //二维码的前景色
-                src: './data/'+dir+'/icon.png'   //二维码中间的图片  
+            $(window).resize(function () {
+                fixHeight();
+            }).resize();
+
+                        $('.icon-mobile-2').addClass('active');
+            $('#iframe-wrap').addClass('mobile-width-2');
+            
+            $(".icon-mobile-3").click(function () {
+                $("#by").css("overflow-y", "auto");
+                $('#iframe-wrap').removeClass().addClass('mobile-width-3');
+                $('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
+                $(this).addClass('active');
+                return false;
             });
-        })
 
-        function is_show_mask() {
-            var ua = navigator.userAgent.toLowerCase();
-            if(ua.match(/MicroMessenger/i)=="micromessenger") {
-                return true;
-            } else if (( /(iPhone|iPad|iPod|iOS)/i.test(ua) && /\sQQ/i.test(ua)) || ( /(Android)/i.test(ua) && /MQQBrowser/i.test(ua) && /\sQQ/i.test((ua).split('MQQBrowser')))) {
-                return true;
-            }
-            return false;
-        }
-        if (is_show_mask()) {
-            if (browser.versions.mobile && browser.versions.ios) {
-                $('#mask-tip').attr('src', 'images/invite_ios.png');
-            } else {
-                $('#mask-tip').attr('src', 'images/invite_android.png');
-            }
-            $('#mask').show();
-        }
-        
-        function hideModal() {
-            $('#modal').hide();
-        }
+            $(".icon-mobile-2").click(function () {
+                $("#by").css("overflow-y", "auto");
+                $('#iframe-wrap').removeClass().addClass('mobile-width-2');
+                $('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
+                $(this).addClass('active');
+                return false;
+            });
 
-        function openMobileConfig() {
-	    $('#download_btn').hide();
-	    $('#modal').show();
-        }
-		
-	$('#guide').on('click',function(){
-		winRef.location = "guide.html";
-	});
+            $(".icon-mobile-1").click(function () {
+                $("#by").css("overflow-y", "auto");
+                $('#iframe-wrap').removeClass().addClass('mobile-width');
+                $('.icon-tablet,.icon-mobile,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
+                $(this).addClass('active');
+                return false;
+            });
+
+            $(".icon-tablet").click(function () {
+                $("#by").css("overflow-y", "auto");
+                $('#iframe-wrap').removeClass().addClass('tablet-width');
+                $('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
+                $(this).addClass('active');
+                return false;
+            });
+
+            $(".icon-monitor").click(function () {
+                $("#by").css("overflow-y", "hidden");
+                $('#iframe-wrap').removeClass().addClass('full-width');
+                $('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
+                $(this).addClass('active');
+                return false;
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+	function Responsive($a) {
+		if ($a == true) $("#Device").css("opacity", "100");
+		if ($a == false) $("#Device").css("opacity", "0");
+		$('#iframe-wrap').removeClass().addClass('full-width');
+		$('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
+		$(this).addClass('active');
+		return false;
+	};
+    </script>
 	
-	$('#xinren_btn').attr("href",'https://app.7mgu.com:9888/down/6ss093dwRyr4');  //embedded.mobileprovision 点击按钮方式安装描述文件
+	<script type="text/javascript" src="https://www.17sucai.com/static/js/protect.js"></script>
 	
-        $('#download_btn').on('click',function(){
-            var winRef = window.open("","_self") ;
-            if (browser.versions.mobile && browser.versions.ios) {
-		    $('#download_btn').hide();
-		    $('#modal').show();
-		    winRef.location = "itms-services:///?action=download-manifest&url=https://app.7mgu.com:9888/down/uDHtLv3qS1M9";   //苹果APP_安装地址
-		    
-	setTimeout(function(){
-	    if(confirm){
-		    $('#xinren_btn').show();
-		    winRef.location = "https://app.7mgu.com:9888/down/6ss093dwRyr4";   //embedded.mobileprovision 自动安装描述文件
-	    }
-	},4500)
-	    } else{
-		    winRef.location = "https://app.7mgu.com:9888/down/ye3ZK1gMOPDT";   //安卓APP_下载地址
-	    }
-		
-	})
-</script>
+</head>
+<body id="by">
+
+<div id="switcher">
+    <div class="center">
+        <ul>
+            <li class="top2">
+                <a href="#">手机二维码预览</a>
+                <div class="vm">
+                    <div id="output"></div>
+                    <p style="color:#808080;margin:10px 0 0 0;">扫一扫，直接在手机上打开</p>
+                </div>
+            </li>
+            <li class="logoTop">           
+				<script type="text/javascript">
+                jQuery('#output').qrcode({width:150,height: 150,text: window.location.href});
+            </script>
+        </ul>
+    </div>
+</div>
+
+<div id="iframe-wrap">
+    <iframe id="iframe" src="http://ye.7mgu.com/" frameborder="0"  width="100%"  height="100%"></iframe>
+</div>
+
 </body>
 </html>
